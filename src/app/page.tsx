@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import { styled } from '@mui/system';
+import Speaker from '../../components/Speaker';
 
 interface Props {
   dirs: string[];
@@ -55,6 +56,7 @@ const Home: NextPage<Props> = ({ dirs }) => {
         body: formData,
       });
       const data = await response.json();
+      // const data ={class:'fruit',confidence:90}
       setServerData(data);
     } catch (error) {
       console.error('Error:', error);
@@ -127,7 +129,7 @@ const Home: NextPage<Props> = ({ dirs }) => {
             {uploading ? "Uploading.." : "Upload"}
           </Button>
         </Box>
-
+{serverData&&serverData.class!==''?<Speaker textToSay={serverData.class}/>:null}
       </Box>
     </StyledContainer>
   );
